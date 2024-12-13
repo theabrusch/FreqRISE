@@ -27,9 +27,6 @@ noise_level refers to the amount of noise added to the training data. In the pap
 
 ### Computing attributions
 To compute the attributions run the script main_attributions.py. This computes attributions for both integrated gradients, LRP and FreqRISE.
-```
-python3 train_synthetic.py --model_path /path/to/save/model --noise_level noise
-```
 
 If you find the code useful, please consider citing:
 ```
