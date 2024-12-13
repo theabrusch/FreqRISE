@@ -1,4 +1,5 @@
-from torch import optim, nn
+from torch import optim, nn, Tensor, utils
+from torch.fft import irfft, rfft
 import lightning as L
 import torch
 

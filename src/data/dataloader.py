@@ -4,30 +4,6 @@ import numpy as np
 import glob
 import h5py as h5
 
-class TSloader(Dataset):
-    def __init__(self, data, freqs = None, target = None):
-        super().__init__()
-        data = torch.tensor(data).float()
-        self.data = data.unsqueeze(1)
-        self.data_length = self.data.shape[2]
-        if freqs is None:
-            freqs = np.zeros(self.data.shape[0])
-        self.freqs = freqs
-        if target is not None:
-            self.target = torch.tensor(target).float()
-        else:
-            self.target = None
-
-    def __len__(self):
-        return self.data.shape[0]
-    
-    def __getitem__(self, idx):
-        data_1 = self.data[idx,:, :self.data_length//2]
-        data_2 = self.data[idx,:, self.data_length//2:]
-        if self.target is not None:
-            return data_1, data_2, self.freqs[idx], self.target[idx]
-        return data_1, data_2, self.freqs[idx]
-
 class AudioNetDataset(Dataset):
     def __init__(self, path, preload, dataset, labeltype = 'digit', splits = [0], subsample = False, seed = 0, add_noise = False, noiselevel = 1):
         self.path = path
